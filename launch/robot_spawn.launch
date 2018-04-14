@@ -9,10 +9,10 @@
       min_joint_1_angle: 0
       max_joint_1_angle: 1.57
       min_joint_2_angle: 0
-      max_joint_2_angle: 1.0
+      max_joint_2_angle: 1.57
     </rosparam>
   </node>
-  
+
   <!--Launch a gazebo world-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find simple_arm)/worlds/willow_garage.world"/>
@@ -22,6 +22,9 @@
     <arg name="headless" value="false"/>
     <arg name="debug" value="false"/>
   </include>
+  
+  <!-- The look away node -->
+  <node name="look_away" type="look_away" pkg="simple_arm"/>
 
   <!--spawn a robot in gazebo world-->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
